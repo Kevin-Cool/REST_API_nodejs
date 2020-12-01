@@ -16,7 +16,7 @@ app.get("/user",(req,res) => {
     require("../Pages/user_page.js").getAllUsers(req,res);
 })
 app.get("/user/:id([0-9]{1})",(req,res) => {
-    require("../Pages/user_page.js").getUserByID(req.params.id);
+    require("../Pages/user_page.js").getUserByID(req,res,req.params.id);
 })
 app.get("*",(req,res) => {
     res.status(404).send(require("../Pages/wrongRequest_page.js"));
