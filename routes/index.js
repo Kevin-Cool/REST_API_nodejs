@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require("body-parser");
+const UserController = require("../Pages/user_page.js")
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -12,9 +13,8 @@ app.use((req,res,next) =>{
 app.get("/",(req,res) => {
     res.status(200).send(require("../Pages/home_page.js"));
 })
-app.get("/user",(req,res) => {
-    require("../Pages/user_page.js").getAllUsers(req,res);
-})
+app.get("/user",UserController.getAllUsers);
+
 app.get("/user/:id([0-9]{1})",(req,res) => {
     require("../Pages/user_page.js").getUserByID(req,res,req.params.id);
 })
