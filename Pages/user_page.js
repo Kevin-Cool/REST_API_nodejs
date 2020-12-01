@@ -2,7 +2,7 @@ const User = require("../models/user")
 
 exports.getAllUsers = (req,res) =>{
     User.fetchAllUsers()
-        .then(users => res.status(200).send("Fuck me:"+users))
+        .then(users => res.status(200).send("Do somthing plz:"+users))
         .catch(err => res.send(err))
 }
 
