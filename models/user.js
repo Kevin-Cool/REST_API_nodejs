@@ -1,4 +1,4 @@
-const sb = require("../config/db");
+const db = require("../config/db");
 
 const User = {
     fetchAllUsers: () =>{
@@ -20,7 +20,27 @@ const User = {
                 resolve(users);
             })
         })
-    }
+    },
 
+    postUser: function (values) {
+        return new Promise((resolve,reject) => {
+            db.query("INSERT INTO users SET ?",[values],(err,users,fields) => {
+                if(err) {
+                    console.error("error:"+err);
+                }
+                resolve(users);
+            })
+        })
+    },
+    getUserByEmail: function (email) {
+        return new Promise((resolve,reject) => {
+            db.query("SELECT * FROM users WHERE email = ?",[email],(err,users,fields) => {
+                if(err) {
+                    console.error("error:"+err);
+                }
+                resolve(users);
+            })
+        })
+    }
 }
 module.exports = User;
